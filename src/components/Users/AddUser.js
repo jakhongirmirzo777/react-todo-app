@@ -3,6 +3,7 @@ import AppCard from "../UI/AppCard";
 import classes from "./AddUser.module.css"
 import AppButton from "../UI/AppButton";
 import AppErrorDialog from "../UI/AppErrorDialog";
+import AppWrapper from "../Helpers/AppWrapper";
 
 const FORM_DATA = {
     username: '',
@@ -50,7 +51,7 @@ const AddUser = ({onAddUserHandler}) => {
     }
 
     return (
-        <div>
+        <AppWrapper>
             <AppCard className={classes['input']}>
                 <form onSubmit={addUserHandler}>
                     <label htmlFor='username'>Username</label>
@@ -68,8 +69,9 @@ const AddUser = ({onAddUserHandler}) => {
                     <AppButton type='submit'>Add User</AppButton>
                 </form>
             </AppCard>
-            {errorDialog.dialog && <AppErrorDialog errorHandler={errorHandler} title={errorDialog.title} message={errorDialog.message}/>}
-        </div>
+            {errorDialog.dialog &&
+                <AppErrorDialog errorHandler={errorHandler} title={errorDialog.title} message={errorDialog.message}/>}
+        </AppWrapper>
     )
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import AppCard from "../UI/AppCard";
-import classes from "./UserList.module.css"
+import classes from "./UsersList.module.css"
 
 const UsersList = ({users = []}) => {
     return (
