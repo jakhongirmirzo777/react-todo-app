@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, Fragment} from 'react';
 import AddUser from "./components/Users/AddUser";
 import UsersList from "./components/Users/UsersList";
-import AppWrapper from "./components/Helpers/AppWrapper";
 
 const App = () => {
     const [users, setUsers] = useState([])
@@ -9,10 +8,10 @@ const App = () => {
         setUsers(prevState => [...prevState, {id: Math.random().toString(), ...formData}])
     }
     return (
-        <AppWrapper>
+        <Fragment>
             <AddUser onAddUserHandler={onAddUserHandler}/>
             <UsersList users={users}/>
-        </AppWrapper>
+        </Fragment>
     );
 }
 
