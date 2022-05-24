@@ -1,6 +1,26 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, Fragment, Profiler} from 'react';
 import AddUser from "./components/Users/AddUser";
 import UsersList from "./components/Users/UsersList";
+import UsersTest from "./components/Users/UsersTest";
+import UsersTest2 from "./components/Users/UsersTest2";
+
+const onRenderCallback = (id,
+                          phase,
+                          actualDuration,
+                          baseDuration,
+                          startTime,
+                          commitTime,
+                          interactions) => {
+    console.log(
+        id,
+        phase,
+        actualDuration,
+        baseDuration,
+        startTime,
+        commitTime,
+        interactions)
+}
+
 
 const App = () => {
     const [users, setUsers] = useState([])
@@ -9,7 +29,13 @@ const App = () => {
     }
     return (
         <Fragment>
-            <AddUser onAddUserHandler={onAddUserHandler}/>
+            <Profiler id='AddUser' onRender={onRenderCallback}>
+                <AddUser onAddUserHandler={onAddUserHandler}/>
+            </Profiler>
+            <UsersTest value={'111'}>
+                <div>Hello</div>
+            </UsersTest>
+            <UsersTest2 name={'test'}/>
             <UsersList users={users}/>
         </Fragment>
     );
